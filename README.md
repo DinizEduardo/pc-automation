@@ -8,7 +8,10 @@ Este repositório contém uma coleção de scripts que automatizam várias taref
 
 Aqui estão os scripts incluídos neste repositório:
 
-1. **`script-1.py`**: Uma breve descrição do que este script faz.
+1. **`./day-to-day/day-to-day.py`**: Script que coleta qual o programa está com foco a cada 30s e salva em um csv
+2. **`./day-to-day/compile.py`**: Compila o ultimo csv encontrado em um csv compilado com a quantidade de vezes que cada programa aparece
+3. **`./photo-day-to-day/take-photo.py`**: Tira uma foto do usuario pela camera do computador e salva em uma pasta `photos`
+4. **`./photo-day-to-day/take-photo.py`**: Compila todas as fotos em um video de que terá 60s
 
 ## Como Usar
 
