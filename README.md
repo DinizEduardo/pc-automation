@@ -12,6 +12,7 @@ Aqui estão os scripts incluídos neste repositório:
 2. **`./day-to-day/compile.py`**: Compila o ultimo csv encontrado em um csv compilado com a quantidade de vezes que cada programa aparece
 3. **`./photo-day-to-day/take-photo.py`**: Tira uma foto do usuario pela camera do computador e salva em uma pasta `photos`
 4. **`./photo-day-to-day/take-photo.py`**: Compila todas as fotos em um video de que terá 60s
+5. **`./picture-clicker/click-while-img-not-on-screen.py`**: Clicará no local que o mouse estiver enquanto não encontrar a imagem `search.png` na tela.
 
 ## Como Usar
 
