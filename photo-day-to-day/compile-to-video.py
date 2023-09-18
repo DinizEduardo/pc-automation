@@ -6,8 +6,8 @@ import numpy as np
 
 
 def criar_video(imagens, nome_video, fps, qualidade):
-    altura_desejada = 720
-    largura_desejada = 1280
+    altura_desejada = 1080
+    largura_desejada = 1920
 
     quarto = cv2.VideoWriter_fourcc(*'mp4v')
     video = cv2.VideoWriter(nome_video, quarto, fps, (largura_desejada, altura_desejada))
