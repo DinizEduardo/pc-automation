@@ -52,7 +52,7 @@ def main():
     imagens = [os.path.join(diretorio_imagens, nome_arquivo) for nome_arquivo in os.listdir(diretorio_imagens) if
                nome_arquivo.endswith('.jpg')]
 
-    duracao_desejada = 60  # em segundos
+    duracao_desejada = 10  # em segundos
 
     # Calcular o FPS com base na quantidade de imagens e na duração desejada
     fps = len(imagens) / duracao_desejada
