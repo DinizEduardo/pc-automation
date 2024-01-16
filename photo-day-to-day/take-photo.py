@@ -1,8 +1,9 @@
 import os
+from tkinter import simpledialog
+
 import cv2
 from datetime import datetime, timedelta
 import tkinter as tk
-from tkinter.simpledialog import askfloat
 from PIL import Image, ImageTk
 
 
@@ -80,20 +81,25 @@ class CapturaImagemApp:
     def check_and_display_input(self):
         if self.last_weight_date is None or (datetime.now() - self.last_weight_date).days >= 7:
             # Se passaram 7 dias ou é a primeira execução, mostrar input
-            weight_input = askfloat("Informe o Peso", "Digite seu peso:")
+            weight_input = simpledialog.askfloat("Informe o Peso", "Digite seu peso:")
 
             if weight_input is not None:
                 # Atualizar arquivo de dados
                 self.update_weight_file(weight_input)
 
     def update_weight_file(self, weight):
-        # Gerar o nome do arquivo com a data atual
-        data_atual = datetime.now().strftime("%Y-%m-%d")
-        arquivo_path = os.path.join('photos', f'{data_atual}.txt')
+        diretorio = 'photos'
+        arquivos_txt = [arquivo for arquivo in os.listdir(diretorio) if arquivo.endswith('.txt')]
 
-        # Adicionar a data e peso ao arquivo
-        with open(arquivo_path, 'a') as arquivo:
-            arquivo.write(f"{data_atual};{weight}\n")
+        if len(arquivos_txt) == 1:
+            # Se há exatamente um arquivo .txt, use o nome como data da última pesagem
+            ultimo_arquivo = sorted(arquivos_txt)[-1].split('.')[0]
+            data_atual = datetime.now().strftime("%Y-%m-%d")
+            arquivo_antigo_path = os.path.join('photos', f'{ultimo_arquivo}.txt')
+            novo_arquivo_path = os.path.join('photos', f'{data_atual}.txt')
+            os.rename(arquivo_antigo_path, novo_arquivo_path)
+            with open(novo_arquivo_path, 'a') as arquivo:
+                arquivo.write(f"{data_atual};{weight}\n")
 
         # Atualizar a data da última pesagem
         self.last_weight_date = self.get_last_weight_date()
@@ -105,7 +111,7 @@ class CapturaImagemApp:
 
         if len(arquivos_txt) == 1:
             # Se há exatamente um arquivo .txt, use o nome como data da última pesagem
-            nome_arquivo = arquivos_txt[0]
+            nome_arquivo = sorted(arquivos_txt)[-1]
             data_str = nome_arquivo.split('.')[0]  # Remover a extensão .txt
             return datetime.strptime(data_str, "%Y-%m-%d")
         else:
